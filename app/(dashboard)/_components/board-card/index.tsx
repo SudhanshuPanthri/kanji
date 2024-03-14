@@ -5,6 +5,10 @@ import {formatDistanceToNow} from 'date-fns';
 import Image from "next/image";
 import { Overlay } from "./overlay";
 import { useAuth } from "@clerk/nextjs";
+import { Footer } from "./footer";
+import { Skeleton } from "@/components/ui/skeleton";
+
+
 interface BoardCardProps{
     id:string,
     title:string,
@@ -34,7 +38,17 @@ export const BoardCard=(
                     <Image src={imageUrl} alt={title} fill className="object-fit" />
                     <Overlay />
                 </div>
+                <Footer isFavorite={isFavorite} title={title} authorLabel={authorLabel} createdAtLabel={createdAtLabel} onClick={()=>{}} disabled={false}/>
             </div>
         </Link>
+    )
+}
+
+
+BoardCard.Skeleton=function BoardCardSkeleton(){
+    return(
+        <div className="aspect-[100/127] rounded-lg overflow-hidden">
+            <Skeleton className="h-full w-full"/>
+        </div>
     )
 }
